@@ -352,7 +352,7 @@ execute pathogen#infect()
 "设置taglist
 let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
-map <leader>t :Tlist<cr>
+map <leader>tl :Tlist<cr>
 "设置winManager
 "let g:winManagerWindowLayout = 'BufExplorer|TagList'
 "map <leader>m :WMToggle<cr>
@@ -379,7 +379,10 @@ let g:vimim_cloud_sogou=4
 set completeopt=longest,menu
 
 "Remap Tasklist
-map <leader>v <Plug>TaskList
+map <leader>ta <Plug>TaskList
+
+"Git Interface
+"execute fugitive#statusline()
 
 "************************************************************************
 "}}}插件设置
