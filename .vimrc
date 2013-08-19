@@ -370,10 +370,6 @@ au BufEnter *.log setlocal ft=txt
 "使用VimIM输入法插件
 let g:vimim_cloud_sogou=4
 
-"设置Python自动补全
-"let g:pydiction_location = '~/.vim/tools/pydiction/complete-dict'
-"default g:pydiction_menu_height == 15
-"let g:pydiction_menu_height = 20
 
 "去除自动补全的预览窗口
 set completeopt=longest,menu
@@ -449,7 +445,7 @@ endif
 
 "My information
 iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
-iab xname Neil Hou
+iab xname Hongwei Hou
 iab xmail neilhhw@gmail.com
 
 
