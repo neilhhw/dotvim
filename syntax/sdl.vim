@@ -34,7 +34,7 @@ syn keyword sdlStatement	default endalternative endmacro endoperator
 syn keyword sdlStatement	endselect endsubstructure external
 syn keyword sdlStatement	if then fi for import macro macrodefinition
 syn keyword sdlStatement	macroid mod nameclass nodelay not operator or
-syn keyword sdlStatement	parent provided referenced rem
+syn keyword sdlStatement	parent provided referenced rem viewed
 syn keyword sdlStatement	select spelling substructure xor fpar returns
 syn keyword sdlNewState		state endstate
 syn keyword sdlInput		input start stop return none save priority output 
