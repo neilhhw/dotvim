@@ -55,3 +55,9 @@
 [submodule "bundle/vim-multiple-cursors"]
 	path = bundle/vim-multiple-cursors
 	url = https://github.com/terryma/vim-multiple-cursors.git
+[submodule "bundle/buf_it"]
+	path = bundle/buf_it
+	url = https://github.com/vim-scripts/buf_it.git
+[submodule "bundle/statusline"]
+	path = bundle/statusline
+	url = https://github.com/vim-scripts/statusline.vim.git
