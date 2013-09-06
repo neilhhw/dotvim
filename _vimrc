@@ -211,7 +211,7 @@ elseif MySys() == "mac"
     set nomacatsui
     set termencoding=macroman
 elseif MySys() == "linux"
-    set gfn=微软雅黑Monaco\ 12
+    set gfn=Monaco\ 11
     set encoding=utf-8
     "set fileencoding=utf-8
 endif "save the coding error
