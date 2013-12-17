@@ -96,7 +96,7 @@ syn match  sdlCommentError	"\*/"
 
 syn keyword sdlOperator		present sizeof
 syn keyword sdlType		integer real natural duration pid boolean time bool dword byte word bytepointer
-syn keyword sdlType		character charstring ia5string
+syn keyword sdlType		character charstring ia5string array
 syn keyword sdlType		self now sender offspring
 syn keyword sdlStructure	asntype endasntype syntype endsyntype struct endstruct enum endenum union endunion
 

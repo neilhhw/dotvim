@@ -1,7 +1,5 @@
-﻿"不要和 VI 兼容
-set nocompatible
+﻿set nocompatible
 
-"设置使用的系统
 function! MySys()
   return "linux"
 endfunction
@@ -12,7 +10,6 @@ else
     "set shell=D:\MinGW\msys\1.0\msys.bat
 endif
 
-"当前路径
 function! CurDir()
   let curdir = substitute(getcwd(), '/home/neilhhw', "~/", "g")
   return curdir
@@ -22,33 +19,19 @@ endfunction
 let mapleader = ","
 let g:mapleader = ","
 
-"使用“Shift + 方向键”选择文本
 set keymodel=startsel,stopsel
-"指定在选择文本时， 光标所在位置也属于被选中的范围
 set selection=inclusive 
-"打开普通文件类型的自动缩进
 set ai
-"Set magic on
 set magic
-"显示括号配对情况
 set sm
-"打开 C/C++ 风格的自动缩进
 set cin
-"显示行号
 set nu
-"设定 C/C++ 风格自动缩进的选项
 "set cinoptions={0,1s,t0,n-2,p2s,(03s,=.5s,>1s,=1s,:1s
-"自动缩进的时候， 缩进尺寸为 4 个空格
 set sw=4
-"Tab 宽度为 4 个字符
 set ts=4
-"软 Tab 宽度为 4 个字符
 set softtabstop=4
-"编辑时将所有 Tab 替换为空格
 set et
-"该命令打开 VIM 的状态栏标尺
 set ru
-"通过$VIMRUNTIME/filetype.vim.打开文件类型检测
 filetype on
 
 if has("eval")
@@ -68,7 +51,6 @@ endif
 nmap <leader>w :w!<cr>
 nmap <leader>f :find<cr>
 
-"快速退出
 nmap <leader>x :q!<CR>
 "close current window
 nmap <leader>z :close<CR>
@@ -100,14 +82,17 @@ else
     let $VIMFILES = $HOME.'/.vim'
 endif
 
+"Add this to rtp to satisfy getscript.vim
+set rtp+=$VIMFILES
+set rtp+=$VIMDATA
+
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+execute pathogen#infect()
+
 "Fast sourcing and editing of the .vimrc
 map <leader>s :source $VIMRC<cr>
 map <leader>e :e! $VIMRC<cr>
 au! BufWritePost [\._]vimrc source $VIMRC
-
-"Add this to rtp to satisfy getscript.vim
-set rtp+=$VIMFILES
-set rtp+=$VIMDATA
 
 "if you use vim in tty,
 "'uxterm -cjk' or putty with option 'Treat CJK ambiguous characters as wide' on
@@ -161,7 +146,6 @@ set ffs=unix,dos,mac
 nmap <leader>fd :set ff=dos<cr>
 nmap <leader>fu :set ff=unix<cr>
 
-"设定文件编码
 "by neil SET file encoding to make it fit in all platform for chinese
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
@@ -181,24 +165,16 @@ elseif MySys() == "linux"
 endif "save the coding error
 "source $VIMRUNTIME/delmenu.vim
 "source $VIMRUNTIME/menu.vim
-"开启语法加亮
 syntax on
-"运行在非兼容(VI)模式下(命令模式下TAB补全)
-set nocompatible
-"在插入模式下设置backspace键可为删除
 set backspace=start,eol,indent
-"设置添加当前的ctags
 if filereadable("./tags")
     set tags+=tags
 endif
-"设置自动改变目录
-"set autochdir
-"设置高亮Search
 set hlsearch
 "Remove the highlight searched phrases
 map <silent> <leader><cr> :noh<cr>
 set incsearch
-"添加括号补全功能 
+
 "ino ( ()<esc>:let leavechar=")"<cr>i
 "ino { {}<esc>:let leavechar="}"<cr>i
 "ino $q ''<esc>:let leavechar="'"<cr>i
@@ -213,7 +189,6 @@ set incsearch
 "endif
 "endf
 
-"设置wildmenu
 set wildmenu
 "Type of file that will not in wildmenu
 set wig=*.o,*.pyc,*.exe,*.obj,*.class
@@ -309,10 +284,8 @@ if has("autocmd")
     au BufNewFile,BufRead *.sdl,*.pr,*.sdt,*.spd,*.sst		setf sdl
 endif
 
-"添加 alt + i 为插入模式
 map <a-i> i <esc>r
 
-"为Python去除尾随的空格
 fu! DeleteTrailingWS()
     exe "normal mz"
     %s/\s\+$//ge
@@ -327,65 +300,47 @@ set foldlevel=100
 "Manual, marker, syntax, trying set foldcolumn=2         
 set foldmethod=marker
 
-"设置Path
 if has("win32")
     set path=.,./../**
 else
-    "set path=.,./../**,/usr/include/**,,
+    set path=.,./../**,/usr/include/**,,
 endif
-"设置Make error 文件
+
 set makeef=makeerror.err
-"查看Make的error绑定
 map <leader>n :cn<cr>
 map <leader>p :cp<cr>
 
 "************************************************************************
-"华丽的分割线
 "************************************************************************
-"{{{插件的设置
 "************************************************************************
 "
-"设置插件管理器
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-execute pathogen#infect()
 
-"设置taglist
 let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
 map <leader>tl :Tlist<cr>
-"设置winManager
-"let g:winManagerWindowLayout = 'BufExplorer|TagList'
-"map <leader>m :WMToggle<cr>
-"设置GREP
 nnoremap <silent> <F3> :Grep<CR>
-"设置minibuffer
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplSplitBelow=1
 
-"使用文本浏览器插件
 au BufEnter *.txt setlocal ft=txt
 au BufEnter *.log setlocal ft=txt
-"使用VimIM输入法插件
 let g:vimim_cloud_sogou=4
 
 
-"去除自动补全的预览窗口
 set completeopt=longest,menu
 
 "Remap Tasklist
 map <leader>ta <Plug>TaskList
 
 "Git Interface
-"execute fugitive#statusline()
+execute fugitive#statusline()
 
 "************************************************************************
-"}}}插件设置
 "************************************************************************
 
 "------------------------------------------------------------------------
-"{{{缩写
 "------------------------------------------------------------------------
 if has("eval") && has("autocmd")
     fun! <SID>abbrev_cpp()
@@ -450,5 +405,4 @@ iab xmail neilhhw@gmail.com
 
 
 "------------------------------------------------------------------------
-"缩写}}}
 "------------------------------------------------------------------------
